@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="header" class="bar">
-    Walrus
+    URMC | Del Monte
     <ul class="navbar">
       <li v-for="link in links"><router-link :to="link.url">{{ link.name }}</router-link></li>
     </ul>

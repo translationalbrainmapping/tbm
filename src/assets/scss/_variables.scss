@@ -1,3 +1,8 @@
 $colors: (
-  primary: #551a8b
+  primary: rgba(3, 94, 123, 1),
+  secondary: rgba(187, 218, 232, 1),
+  tertiary: rgba(210, 242, 220, 1),
+  lightgray: rgba(134, 154, 165, 1),
+  dark: darken(rgba(3, 94, 123, 1), 10%),
+  light: rgba(220, 220, 220, 1)
 );

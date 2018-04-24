@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Raleway');
+
+html {
+  font-size: 52%;
+
+  &, body, #app {
+    font-family: 'Montserrat', sans-serif;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Raleway', sans-serif;
+}
+
+.big-title {
+  font-size: 6rem;
+  color: map-get($colors, dark);
+}
+
+#pages {
+  font-size: 200%;
+}

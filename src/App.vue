@@ -39,10 +39,5 @@
 </script>
 
 <style lang="scss">
-  @import url('https://fonts.googleapis.com/css?family=Montserrat|Raleway');
-  @import './assets/scss/variables';
-  @import './assets/scss/reboot';
-  @import './assets/scss/nav';
-  @import './assets/scss/page';
-  @import './assets/scss/content';
+  @import "./assets/scss/app";
 </style>

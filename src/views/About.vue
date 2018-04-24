@@ -1,10 +1,8 @@
 <template>
-  <div class="page">
-    <div class="wrapper">
-      <div class="text-container">
-        <div class="content">
-          <h1>Hello.</h1>
-        </div>
+  <div class="popup right dark">
+    <div class="text-container">
+      <div class="content">
+        <h1>Hello.</h1>
       </div>
     </div>
   </div>
@@ -15,5 +13,5 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="scss">
 </style>
