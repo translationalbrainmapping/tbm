@@ -1,29 +1,48 @@
-<template>
+<template lang="html">
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <Header :links="links" />
+
+    <div id="content">
+      <Three />
+      <main id="pages">
+        <transition>
+          <router-view />
+        </transition>
+      </main>
     </div>
-    <router-view/>
+
+    <Footer />
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+  import Header from '@/components/Header.vue'
+  import Three from '@/components/Three.vue'
+  import Footer from '@/components/Footer.vue'
+
+  export default {
+    name: 'App',
+    components: {
+      Header,
+      Three,
+      Footer,
+    },
+    data() {
+      return {
+        links: [
+          { name: 'Home', url: '/' },
+          { name: 'About', url: '/about' },
+        ]
+      }
     }
   }
-}
+</script>
+
+<style lang="scss">
+  @import url('https://fonts.googleapis.com/css?family=Montserrat|Raleway');
+  @import './assets/scss/variables';
+  @import './assets/scss/reboot';
+  @import './assets/scss/nav';
+  @import './assets/scss/page';
+  @import './assets/scss/content';
 </style>
