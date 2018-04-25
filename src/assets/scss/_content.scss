@@ -1,6 +1,9 @@
 #content {
   position: relative;
+  z-index: 1;
   top: 5.58rem;
   height: calc(100% - 9.38rem);
   width: 100%;
+  font-size: 200%;
+  background-color: #dddddd;
 }

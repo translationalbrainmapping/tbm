@@ -1,14 +1,11 @@
 <template lang="html">
   <div id="app">
-    <Header :links="links" />
+    <Header />
 
     <div id="content">
-      <Three />
-      <main id="pages">
-        <transition>
-          <router-view />
-        </transition>
-      </main>
+      <Three /> <!-- Render 3D World -->
+
+      <router-view /> <!-- Render Page -->
     </div>
 
     <Footer />
@@ -26,18 +23,11 @@
       Header,
       Three,
       Footer,
-    },
-    data() {
-      return {
-        links: [
-          { name: 'Home', url: '/' },
-          { name: 'About', url: '/about' },
-        ]
-      }
     }
   }
 </script>
 
 <style lang="scss">
   @import "./assets/scss/app";
+  @import "./assets/scss/animate.css";
 </style>

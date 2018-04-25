@@ -1,0 +1,54 @@
+// Popup content for clicking on parts of the brain
+.popup {
+  z-index: 25;
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+
+  // Right-aligned popups
+  &.right {
+    right: 0;
+    margin-left: auto;
+    padding-right: 6rem;
+
+    .wrapper {
+      text-align: right;
+    }
+  }
+
+  // Left-aligned popups
+  &.left {
+    padding-left: 6rem;
+
+    .wrapper {
+      text-align: left;
+    }
+  }
+
+  // Content wrapper
+  .wrapper {
+    position: relative;
+    width: 100%;
+
+    &.dark {
+      background: map-get($colors, dark);
+      color: map-get($colors, light);
+    }
+
+    // Header for a popup
+    .header {
+      width: 100%;
+    }
+
+    // Text only Content
+    .text-container {
+      height: 100%;
+
+      .content {
+        padding: 4rem;
+      }
+    }
+  }
+}

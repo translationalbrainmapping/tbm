@@ -2,7 +2,7 @@
   <div id="header" class="bar">
     URMC | Del Monte
     <ul class="navbar">
-      <li v-for="link in links"><router-link :to="link.url">{{ link.name }}</router-link></li>
+      <router-link v-for="link in links" :key="link.path" :to="link.path"><li>{{ link.name }}</li></router-link>
     </ul>
   </div>
 </template>
@@ -10,10 +10,13 @@
 <script>
 export default {
   name: 'Header',
-  props: {
-    links: {
-      type: Array,
-      required: true
+  data() {
+    return {
+      links: [
+        { path: '/', name: 'Home' },
+        { path: '/team', name: 'Team' },
+        { path: '/news', name: 'News' },
+      ]
     }
   }
 }
