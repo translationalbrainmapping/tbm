@@ -13,8 +13,22 @@ export default {
     }
   },
   mounted() {
-    // Build world and append to page
     World.build(window, document, 'three')
+  },
+  watch: {
+    '$route' (to, from) {
+      if (to.meta.side == from.meta.side) return // don't update if on same side
+
+      console.log(from.name + " " + to.name)
+      // refresh scene after a second (bring back 2d targets)
+      setTimeout(() => {
+        World.render()
+        let targets = document.getElementsByClassName('targetbox')
+        for (let t of targets) {
+          t.classList.remove('hidden')
+        }
+      }, 1000)
+    }
   }
 }
 </script>
