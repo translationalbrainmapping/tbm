@@ -9,15 +9,12 @@ export default {
   name: 'Three',
   computed: {
     threeOnRight() {
-      return this.$route.name == 'Home'
+      return this.$route.meta.side == 'left'
     }
   },
   mounted() {
     // Build world and append to page
     World.build(window, document, 'three')
-
-    // Call first animation frame
-    World.animate()
   }
 }
 </script>

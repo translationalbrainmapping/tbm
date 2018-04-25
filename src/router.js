@@ -17,12 +17,12 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   routes: [
-    { path: '/', name: 'Home', component: Home },
-    { path: '/team', name: 'Team', component: Team },
-    { path: '/news', name: 'News', component: News },
-    { path: '/show/frontal', name: 'Frontal', component: Frontal },
-    { path: '/show/parietal', name: 'Parietal', component: Parietal },
-    { path: '/show/occipital', name: 'Occipital', component: Occipital },
-    { path: '/show/temporal', name: 'Temporal', component: Temporal },
+    { path: '/',     name: 'Home', component: Home, meta: { side: 'left' } },
+    { path: '/team', name: 'Team', component: Team, meta: { side: 'full' } },
+    { path: '/news', name: 'News', component: News, meta: { side: 'full' } },
+    { path: '/show/frontal',   name: 'Frontal',   component: Frontal,   meta: { side: 'right' } },
+    { path: '/show/parietal',  name: 'Parietal',  component: Parietal,  meta: { side: 'left'  } },
+    { path: '/show/occipital', name: 'Occipital', component: Occipital, meta: { side: 'right' } },
+    { path: '/show/temporal',  name: 'Temporal',  component: Temporal,  meta: { side: 'left'  } },
   ]
 })
