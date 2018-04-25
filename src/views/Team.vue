@@ -1,13 +1,16 @@
 <template>
-  <transition name="fade-left" enter-active-class="animated fadeInRight" leave-active-class="animated fadeOutRight">
-    <div class="popup right">
-      <div class="wrapper dark">
-        <div class="text-container">
-          <div class="content">
-            <h1>Hello.</h1>
-          </div>
-        </div>
+  <transition name="fade-up" enter-active-class="animated fadeInUp" leave-active-class="animated fadeOutDown">
+    <div class="page">
+      <div class="container">
+        <h1 class="big-title">Meet the Team!</h1>
+        <p>Preserving the mind through personalized brain mapping.</p>
       </div>
     </div>
   </transition>
 </template>
+
+<script>
+  export default {
+    name: 'Team'
+  }
+</script>

@@ -1,8 +1,9 @@
 <template lang="html">
   <div id="header" class="bar">
-    URMC | Del Monte
+    <router-link :to="{ name: 'Home' }">URMC | Del Monte</router-link>
+
     <ul class="navbar">
-      <router-link v-for="link in links" :key="link.path" :to="link.path"><li>{{ link.name }}</li></router-link>
+      <router-link v-for="link in links" :key="link" :to="{ name: link }"><li>{{ link }}</li></router-link>
     </ul>
   </div>
 </template>
@@ -12,11 +13,7 @@ export default {
   name: 'Header',
   data() {
     return {
-      links: [
-        { path: '/', name: 'Home' },
-        { path: '/team', name: 'Team' },
-        { path: '/news', name: 'News' },
-      ]
+      links: [ 'Home', 'Team', 'News' ]
     }
   }
 }

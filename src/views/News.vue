@@ -1,20 +1,16 @@
 <template>
-  <transition name="fade-up" enter-active-class="animated fadeInUp" leave-active-class="animated fadeOutUp">
+  <transition name="fade-up" enter-active-class="animated fadeInUp" leave-active-class="animated fadeOutDown">
     <div class="page">
-      <div class="wrapper">
-        <div class="text-container">
-          <div class="content">
-            <h1 class="big-title">Translational Brain Mapping</h1>
-            <p>Preserving the mind through personalized brain mapping.</p>
-          </div>
-        </div>
+      <div class="container">
+        <h1 class="big-title">News!</h1>
+        <p>Preserving the mind through personalized brain mapping.</p>
       </div>
     </div>
   </transition>
 </template>
 
 <script>
-export default {
-  name: 'News'
-}
+  export default {
+    name: 'News',
+  }
 </script>

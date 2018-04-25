@@ -11,6 +11,11 @@
   display: flex;
   align-items: center;
 
+  a {
+    color: map-get($colors, primary);
+    text-decoration: none;
+  }
+
   ul.navbar {
     height: 100%;
     margin: 0;

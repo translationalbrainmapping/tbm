@@ -1,5 +1,5 @@
 <template lang="html">
-  <div id="three" :class="{ right: threeOnRight }"></div>
+  <div id="three" :class="{ right: threeOnRight, middle: threeInMiddle }"></div>
 </template>
 
 <script>
@@ -10,6 +10,9 @@ export default {
   computed: {
     threeOnRight() {
       return this.$route.meta.side == 'left'
+    },
+    threeInMiddle() {
+      return this.$route.meta.side == 'full'
     }
   },
   mounted() {
@@ -17,7 +20,7 @@ export default {
   },
   watch: {
     '$route' (to, from) {
-      if (to.meta.side == from.meta.side) return // don't update if on same side
+      if (to.meta.side == from.meta.side || to.meta.side == 'full') return // don't update if on same side or full page
 
       console.log(from.name + " " + to.name)
       // refresh scene after a second (bring back 2d targets)
@@ -46,6 +49,9 @@ export default {
 
     &.right {
       left: 50%;
+    }
+    &.middle {
+      left: 25%;
     }
   }
   canvas {
