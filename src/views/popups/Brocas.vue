@@ -4,7 +4,7 @@
       <div class="wrapper dark">
         <div class="text-container">
           <div class="content">
-            <h1>Occipital Lobe.</h1>
+            <h1>Broca's Area.</h1>
           </div>
         </div>
       </div>
@@ -14,6 +14,6 @@
 
 <script>
   export default {
-    name: 'Occipital'
+    name: 'Brocas'
   }
 </script>

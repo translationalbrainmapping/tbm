@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import OrbitControls from '@/assets/js/orbit'
+import Targets from '@/assets/js/targets'
 
 let world = (function () {
   let self = {} // export container
@@ -11,23 +12,20 @@ let world = (function () {
       camera,
       renderer,
       controls,
+      raycaster,
+      mouse,
       loader,
       brain,
-      targetboxes,
-      targets
+      targets,
+      oldTargets,
+      targetbox
 
   // Build the Three.js Instance
   self.build = function(w, document, id) {
     // save container reference for later
     window = w
     container = document.getElementById(id)
-    targetboxes = {
-      Occipital: document.getElementById('targetBoxOccipital'),
-      Parietal: document.getElementById('targetBoxParietal'),
-      Frontal: document.getElementById('targetBoxFrontal'),
-      Temporal_L: document.getElementById('targetBoxTemporal_L'),
-      Temporal_R: document.getElementById('targetBoxTemporal_R'),
-    }
+    targetbox = document.getElementById('targetBox')
 
     // loader object to load 3D Models
     loader = new THREE.ObjectLoader()
@@ -50,8 +48,13 @@ let world = (function () {
     controls.addEventListener('change', self.render) // call this only in static scenes (i.e., if there is no animation loop)
     controls.enablePan = false
     controls.enableKeys = false
+    controls.enableZoom = false
     controls.minDistance = 10
     controls.maxDistance = 100
+
+    // Setup Raycasting
+    mouse = new THREE.Vector2()
+    raycaster = new THREE.Raycaster()
 
     self.populate()
     self.append()
@@ -73,28 +76,12 @@ let world = (function () {
       (err) => console.log('Error loading brain: ' + err) // onError callback
     )
 
-    // Setup 3D Targets
-    targets = []
-
-    // Create target 1 (frontal)
-    targets[0] = new THREE.Vector3(2.8, 2.8, 0)
-    targets[0].target = 'Frontal'
-
-    // Create target 2 (left temporal)
-    targets[1] = new THREE.Vector3(0.2, 1, -2.5)
-    targets[1].target = 'Temporal_L'
-
-    // Create target 3 (right temporal)
-    targets[2] = new THREE.Vector3(0.2, 1, 2.5)
-    targets[2].target = 'Temporal_R'
-
-    // Create target 4 (occipital)
-    targets[3] = new THREE.Vector3(-3.5, 0.8, 0)
-    targets[3].target = 'Occipital'
-
-    // Create target 5 (parietal)
-    targets[4] = new THREE.Vector3(-1.1, 3.8, 0)
-    targets[4].target = 'Parietal'
+    // Create 3D Targets
+    targets = Targets.all()
+    oldTargets = []
+    for (let t of targets) {
+      scene.add(t)
+    }
 
     // Setup lighting
     scene.add(new THREE.DirectionalLight(0xffcccc, .5))
@@ -106,6 +93,8 @@ let world = (function () {
     // Append THREE.js to our document + listeners
     container.appendChild(renderer.domElement)
     window.addEventListener('resize', self.onWindowResize)
+    window.addEventListener('mousemove', self.onMouseMove)
+    window.addEventListener('touchmove', self.onMouseMove)
 
     // render for the first time
     self.render()
@@ -122,20 +111,81 @@ let world = (function () {
     self.render()
   }
 
-  // Render world
-  self.render = function() {
-    // Update the 2d coordinates for each of the 3d target objects
-    for (let i = 0; i < targets.length; i++) {
-      let vector = targets[i].clone()
-      vector.project(camera)
+  // Handle mouse movement for painting color
+  self.onMouseMove = function (event) {
+    event.preventDefault()
 
-      let widthHalf = container.clientWidth / 2.0
-      let heightHalf = container.clientHeight / 2.0
-      targetboxes[targets[i].target].style.left = ((widthHalf + vector.x * widthHalf) + container.getBoundingClientRect().left) + 'px'
-      targetboxes[targets[i].target].style.top = ((heightHalf - vector.y * heightHalf) + container.getBoundingClientRect().top) + 'px'
+    // Capture mouse/touch location
+    let x, y
+    if (event.changedTouches) {
+    	x = event.changedTouches[0].pageX
+    	y = event.changedTouches[0].pageY
+    } else {
+    	x = event.clientX
+    	y = event.clientY
     }
 
-    // Rerender scene
+    // Save location to mouse object
+    mouse.x = ((x - container.getBoundingClientRect().left) / container.clientWidth) * 2 - 1
+    mouse.y = -((y - container.getBoundingClientRect().top) / container.clientHeight) * 2 + 1
+
+    // Update Raycaster
+    raycaster.setFromCamera(mouse, camera)
+
+    // Handle intersections
+    let hitTargets = raycaster.intersectObjects(targets)
+
+    // Make old targets almost invisible
+    if (oldTargets.length > 0) {
+      oldTargets.pop().object.material.opacity = 0.1
+      targetbox.style.display = 'none'
+    }
+
+    if (hitTargets.length > 0) {
+      // Highlight hovered target
+      hitTargets[0].object.material.opacity = 0.3
+      oldTargets.push(hitTargets[0])
+
+      // Update targetbox data with the current hittarget
+      targetbox.dataset.name = hitTargets[0].object.info.name
+      targetbox.dataset.dest = hitTargets[0].object.info.dest
+      targetbox.dataset.functions = hitTargets[0].object.info.functions.join(';')
+
+      // Get 2d mouse position from 3d intersection
+      let vector = hitTargets[0].point.clone()
+      vector.project(camera)
+
+      // Update targetbox location to mouse position
+      let widthHalf = container.clientWidth / 2.0
+      let heightHalf = container.clientHeight / 2.0
+      // Grab container offsets
+      let contLeft = container.getBoundingClientRect().left
+      let contTop = container.getBoundingClientRect().top
+      // Get X/Y coordinates to put targetbox
+      let left = ((widthHalf + vector.x * widthHalf) + contLeft)
+      let top = ((heightHalf - vector.y * heightHalf) + contTop)
+
+      // Get Center lines to see what quadrant we are in
+      let cHoriz = contLeft + widthHalf
+      let cVert = contTop + heightHalf
+      // Put Corner coordinates depending on quadrant
+      targetbox.dataset.l = (left < cHoriz)
+      targetbox.dataset.t = (top < cVert)
+      targetbox.dataset.popLeft = (left < cHoriz) ? (contLeft + widthHalf / 8.0) : ((contLeft + container.clientWidth) - 210 - widthHalf / 8.0)
+      targetbox.dataset.popTop = (top < cVert) ? (contTop + heightHalf / 8.0) : ((contTop + container.clientHeight) - 78 - heightHalf / 8.0)
+
+      // Update styles to put box at point
+      targetbox.style.left = left + 'px'
+      targetbox.style.top = top + 'px'
+      targetbox.style.display = 'block'
+    }
+
+    // Redraw scene (to repaint highlights)
+    self.render()
+  }
+
+  // Render world
+  self.render = function() {
     renderer.render(scene, camera)
   }
 

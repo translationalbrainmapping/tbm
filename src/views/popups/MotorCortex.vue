@@ -4,7 +4,7 @@
       <div class="wrapper dark">
         <div class="text-container">
           <div class="content">
-            <h1>Temporal Lobe.</h1>
+            <h1>Motor Cortex.</h1>
           </div>
         </div>
       </div>
@@ -14,6 +14,6 @@
 
 <script>
   export default {
-    name: 'Temporal'
+    name: 'MotorCortex'
   }
 </script>

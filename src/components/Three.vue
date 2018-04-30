@@ -1,5 +1,19 @@
 <template lang="html">
-  <div id="three" :class="{ right: threeOnRight, middle: threeInMiddle }"></div>
+  <div id="three" :class="{ right: threeOnRight, middle: threeInMiddle }">
+    <!-- 2D Target box to intercept mouseclicks on the 3D targets -->
+    <div id="targetBox" @click="goto" @mouseenter="hover" @mouseleave="unhover"></div>
+
+    <!-- Details Popup -->
+    <div v-show="tShow" id="contextPopup">
+      <h3 class="name">{{ tName }}</h3>
+      <hr>
+      <ul class="functions">
+        <li v-for="func of tFunctions">{{ func }}</li>
+      </ul>
+      <div :class="[ 'triangle', tCorner ]"></div>
+      <div :class="[ 'pointer', tCorner ]"></div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -7,55 +21,46 @@ import World from '@/assets/js/world'
 
 export default {
   name: 'Three',
+  data() {
+    return {
+      tShow: false,
+      tName: '',
+      tFunctions: [],
+      tCorner: ''
+    }
+  },
   computed: {
-    threeOnRight() {
-      return this.$route.meta.side == 'left'
+    threeOnRight() { return this.$route.meta.side == 'left' },
+    threeInMiddle() { return this.$route.meta.side == 'full' }
+  },
+  methods: {
+    goto() {
+      let target = document.getElementById('targetBox').dataset.dest
+      if (target == this.$route.name) return
+      this.$router.push({ name: target })
+      this.tShow = false
     },
-    threeInMiddle() {
-      return this.$route.meta.side == 'full'
-    }
-  },
-  mounted() {
-    World.build(window, document, 'three')
-  },
-  watch: {
-    '$route' (to, from) {
-      if (to.meta.side == from.meta.side || to.meta.side == 'full') return // don't update if on same side or full page
+    hover() {
+      let target = document.getElementById('targetBox')
+      let popup = document.getElementById('contextPopup')
 
-      console.log(from.name + " " + to.name)
-      // refresh scene after a second (bring back 2d targets)
-      setTimeout(() => {
-        World.render()
-        let targets = document.getElementsByClassName('targetbox')
-        for (let t of targets) {
-          t.classList.remove('hidden')
-        }
-      }, 1000)
-    }
-  }
+      // Update context popup info
+      this.tName = target.dataset.name
+      this.tFunctions = target.dataset.functions.split(';')
+
+      let l = (target.dataset.l == 'true') ? 'l' : 'r'
+      let t = (target.dataset.t == 'true') ? 't' : 'b'
+      this.tCorner = t + l
+
+      // Position in a corner
+      popup.style.left = target.dataset.popLeft + 'px'
+      popup.style.top = target.dataset.popTop + 'px'
+
+      // Render the popup
+      this.tShow = true
+    },
+    unhover() { this.tShow = false }
+  },
+  mounted() { World.build(window, document, 'three') }
 }
 </script>
-
-<style lang="scss">
-  #three {
-    z-index: 0;
-    margin: 0;
-    padding: 0;
-    width: 50%;
-    height: 100%;
-    left: 0;
-    position: absolute;
-    transition: left 1s ease;
-
-    &.right {
-      left: 50%;
-    }
-    &.middle {
-      left: 25%;
-    }
-  }
-  canvas {
-    width: 100%;
-    height: 100%;
-  }
-</style>

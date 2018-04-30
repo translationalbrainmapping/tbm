@@ -5,5 +5,5 @@
   height: calc(100% - 9.38rem);
   width: 100%;
   font-size: 200%;
-  background-color: #dddddd;
+  background-color: map-get($colors, bg);
 }
