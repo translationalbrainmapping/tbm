@@ -1,0 +1,50 @@
+@mixin triangle($vert, $horiz, $unit, $color) {
+  #{$vert}: -$unit;
+  #{$horiz}: -$unit;
+  
+  $sides: 'left' 'top' 'right' 'bottom';
+  @each $side in $sides {
+    @if $side == $vert or $side == $horiz {
+      @if $color != null {
+        border-#{$side}: (2 * $unit) solid $color;
+      } @else {
+        border-#{$side}: (2 * $unit) solid map-get($colors, bg);
+      }
+    } @else {
+      border-#{$side}: (2 * $unit) solid transparent;
+    }
+  }
+}
+
+@mixin triangleBuilder ($sides, $size, $color:null) {
+  @each $L1, $vertical in $sides {
+    @each $L2, $horizontal in $sides {
+      @if ($L1 != $L2) {
+        &.#{$L1}#{$L2} {
+          @include triangle($vertical, $horizontal, $size, $color);
+        }
+      }
+    }
+  }
+}
+
+// Triangle cutout
+.triangle {
+  position: absolute;
+  z-index: 0;
+
+  &.small {
+    @include triangleBuilder($sides, $tSize);
+
+    &.white {
+      @include triangleBuilder($sides, $tSize, white);
+    }
+  }
+  &.big {
+    @include triangleBuilder($sides, ($tSize * 3));
+
+    &.white {
+      @include triangleBuilder($sides, ($tSize * 3), white);
+    }
+  }
+}

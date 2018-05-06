@@ -4,6 +4,8 @@ import Targets from '@/assets/js/targets'
 
 let world = (function () {
   let self = {} // export container
+  // boolean to flag if should detect input
+  self.touching = false;
 
   // Global variables
   let window,
@@ -113,6 +115,7 @@ let world = (function () {
 
   // Handle mouse movement for painting color
   self.onMouseMove = function (event) {
+    if (!self.touching) return // bail if not touching the world
     event.preventDefault()
 
     // Capture mouse/touch location

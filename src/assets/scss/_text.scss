@@ -28,3 +28,11 @@ h1, h2, h3, h4, h5, h6 {
 #pages {
   font-size: 200%;
 }
+
+a:not(.btn) {
+  color: map-get($colors, primary);
+
+  &:hover {
+    color: lighten(map-get($colors, primary), 15%);
+  }
+}

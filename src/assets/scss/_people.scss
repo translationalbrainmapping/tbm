@@ -1,0 +1,64 @@
+.person {
+  margin-top: 8rem;
+
+  &.right {
+    .blk {
+      text-align: right;
+    }
+    .img {
+      float: right;
+      margin-left: 4rem;
+    }
+  }
+
+  &.left {
+    .blk {
+      text-align: left;
+    }
+    .img {
+      float: left;
+      margin-right: 4rem;
+    }
+  }
+
+  .info {
+    text-align: justify;
+
+    .img {
+      width: 20%;
+      position: relative;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    p {
+      margin: 0;
+
+      &.name {
+        margin-bottom: 0.5rem;
+
+        a {
+          font-size: 2.3rem;
+          text-decoration: none;
+          font-weight: bold;
+          margin-bottom: 1rem;
+
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+
+      &.title {
+        font-style: italic;
+        font-size: 1.7rem;
+      }
+
+      &.description {
+        margin-top: 2rem;
+      }
+    }
+  }
+}

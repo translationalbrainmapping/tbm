@@ -7,3 +7,9 @@ $colors: (
   light: rgba(220, 220, 220, 1),
   bg: #dddddd
 );
+
+$sides: ('t', 'top'), ('l', 'left'), ('b', 'bottom'), ('r', 'right');
+$tSize: 7px;
+$pSize: 10px;
+$bsSize: 0.6rem;
+$bbSize: 2rem - $bsSize;

@@ -5,11 +5,16 @@
 @import 'reboot';
 @import 'text';
 
+// Cutouts / visual effects
+@import 'triangles';
+@import 'pointers';
+@import 'brackets';
+
 // Component Styles
 @import 'nav';
 @import 'popup';
 @import 'buttons';
-@import 'cutouts';
 @import 'page';
 @import 'content';
 @import 'three';
+@import 'people';

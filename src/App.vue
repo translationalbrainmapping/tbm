@@ -74,5 +74,5 @@
 
 <style lang="scss">
   @import "./assets/scss/app";
-  @import "./assets/scss/animate.css";
+  @import "./assets/css/animate.css";
 </style>

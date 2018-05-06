@@ -1,0 +1,49 @@
+@function opposite($side) {
+  @if $side == 'left' {
+    @return 'right';
+  } @else if $side == 'right' {
+    @return 'left';
+  } @else if $side == 'top' {
+    @return 'bottom';
+  } @else if $side == 'bottom' {
+    @return 'top';
+  } @else {
+    @return '';
+  }
+}
+
+@mixin pointer($vert, $horiz, $unit) {
+  #{opposite($vert)}: 0;
+  #{$horiz}: 100%;
+
+  $sides: 'left' 'top' 'right' 'bottom';
+  @each $side in $sides {
+    @if $side == $horiz {
+      border-#{$side}: $unit solid white;
+    } @else if $side == opposite($vert) {
+      border-#{$side}: $unit solid transparent;
+    } @else {
+      border-#{$side}: (2 * $unit) solid transparent;
+    }
+  }
+}
+
+@mixin pointerBuilder ($sides, $size) {
+  @each $L1, $vertical in $sides {
+    @each $L2, $horizontal in $sides {
+      @if ($L1 != $L2) {
+        &.#{$L1}#{$L2} {
+          @include pointer($vertical, $horizontal, $size);
+        }
+      }
+    }
+  }
+}
+
+// pointer overhange on popups
+.pointer {
+  position: absolute;
+  z-index: 0;
+
+  @include pointerBuilder($sides, $pSize);
+}

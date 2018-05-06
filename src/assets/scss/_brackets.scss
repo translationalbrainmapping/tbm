@@ -1,0 +1,43 @@
+@mixin bracket($vert, $horiz, $smallUnit, $bigUnit, $color) {
+  #{$vert}: 0;
+  #{$horiz}: 0;
+
+  $sides: 'left' 'top' 'right' 'bottom';
+  @each $side in $sides {
+    @if $side == $vert or $side == $horiz {
+      border-#{$side}: $smallUnit solid $color;
+    } @else {
+      border-#{$side}: $bigUnit solid transparent;
+    }
+  }
+}
+
+@mixin bracketBuilder ($sides, $sSize, $bSize, $color:white) {
+  @each $L1, $vertical in $sides {
+    @each $L2, $horizontal in $sides {
+      @if ($L1 != $L2) {
+        &.#{$L1}#{$L2} {
+          @include bracket($vertical, $horizontal, $sSize, $bSize, $color);
+        }
+      }
+    }
+  }
+}
+
+// corner brackets for cool buttons
+.bracket {
+  position: absolute;
+  z-index: 0;
+
+  &.white {
+    @include bracketBuilder($sides, $bsSize, $bbSize);
+  }
+
+  &.dark {
+    @include bracketBuilder($sides, $bsSize, $bbSize, map-get($colors, dark));
+  }
+
+  &.bg {
+    @include bracketBuilder($sides, $bsSize, $bbSize, map-get($colors, bg));
+  }
+}
