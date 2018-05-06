@@ -13,8 +13,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .big-title {
+  margin: 0;
   font-size: 6rem;
   color: map-get($colors, dark);
+}
+
+.small-title {
+  font-size: 3rem;
+  font-weight: normal;
+  color: map-get($colors, dark);
+  margin: 0;
 }
 
 #pages {

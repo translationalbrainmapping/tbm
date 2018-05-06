@@ -18,6 +18,7 @@ export default new Router({
     { path: '/',     name: 'Home', component: Home, meta: { side: 'left' } },
     { path: '/team', name: 'Team', component: Team, meta: { side: 'full' } },
     { path: '/news', name: 'News', component: News, meta: { side: 'full' } },
+    { path: '/explore', name: 'Explore', component: null, meta: { side: 'full' } },
 
     { path: '/show/brocas', name: 'Brocas', component: Brocas, meta: { side: 'right' } },
     { path: '/show/motor-cortex', name: 'MotorCortex', component: MotorCortex, meta: { side: 'left' } },

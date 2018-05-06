@@ -1,0 +1,21 @@
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  padding: 1rem 4rem;
+  margin-right: 3rem;
+  position: relative;
+}
+
+$btn-colors: 'primary' 'dark';
+
+@each $color in $btn-colors {
+  .btn-#{$color} {
+    background-color: map-get($colors, $color);
+    color: white;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: lighten(map-get($colors, $color), 15%);
+    }
+  }
+}

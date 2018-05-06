@@ -10,7 +10,7 @@
       <ul class="functions">
         <li v-for="func of tFunctions">{{ func }}</li>
       </ul>
-      <div :class="[ 'triangle', tCorner ]"></div>
+      <div :class="[ 'triangle', 'small', tCorner ]"></div>
       <div :class="[ 'pointer', tCorner ]"></div>
     </div>
   </div>

@@ -1,13 +1,15 @@
 // Import Misc stuff
-@import './assets/scss/variables';
+@import 'variables';
 
 // Global adjustments
-@import './assets/scss/reboot';
-@import './assets/scss/text';
+@import 'reboot';
+@import 'text';
 
 // Component Styles
-@import './assets/scss/nav';
-@import './assets/scss/popup';
-@import './assets/scss/page';
-@import './assets/scss/content';
-@import './assets/scss/three';
+@import 'nav';
+@import 'popup';
+@import 'buttons';
+@import 'cutouts';
+@import 'page';
+@import 'content';
+@import 'three';

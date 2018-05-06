@@ -19,12 +19,16 @@
   ul.navbar {
     height: 100%;
     margin: 0;
-    margin-left: auto;
+    padding: 0;
     list-style-type: none;
 
     a {
       color: map-get($colors, primary);
       text-decoration: none;
+
+      &.router-link-exact-active li, &:hover li {
+        border-top: 2px solid map-get($colors, primary);
+      }
 
       li {
         height: 100%;
@@ -33,7 +37,9 @@
         display: inline-flex;
         align-items: center;
         background-color: none;
+        border-top: 2px solid white;
         cursor: pointer;
+        box-sizing: border-box;
       }
 
       &:hover {

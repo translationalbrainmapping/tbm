@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="app">
-    <Header />
+    <!-- <Header /> -->
 
     <div id="content">
       <Three /> <!-- Render 3D World -->
@@ -13,14 +13,14 @@
 </template>
 
 <script>
-  import Header from '@/components/Header.vue'
+  // import Header from '@/components/Header.vue'
   import Three from '@/components/Three.vue'
   import Footer from '@/components/Footer.vue'
 
   export default {
     name: 'App',
     components: {
-      Header,
+      // Header,
       Three,
       Footer,
     }
