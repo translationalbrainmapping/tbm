@@ -171,8 +171,8 @@ let world = (function () {
       // Put Corner coordinates depending on quadrant
       targetbox.dataset.l = (left < cHoriz)
       targetbox.dataset.t = (top < cVert)
-      targetbox.dataset.popLeft = (left < cHoriz) ? (contLeft + widthHalf / 8.0) : ((contLeft + container.clientWidth) - 210 - widthHalf / 8.0)
-      targetbox.dataset.popTop = (top < cVert) ? (contTop + heightHalf / 8.0) : ((contTop + container.clientHeight) - 78 - heightHalf / 8.0)
+      targetbox.dataset.popLeft = (left < cHoriz) ? (left - 240) : (left + 30)
+      targetbox.dataset.popTop = (top < cVert) ? (top - 55) : (top)
 
       // Update styles to put box at point
       targetbox.style.left = left + 'px'

@@ -37,6 +37,7 @@ canvas {
   background: white;
   padding: 1rem 1.5rem;
   box-shadow: 1px 2px 3px #ccc;
+  pointer-events: none;
 
   .name {
     margin: 0;
