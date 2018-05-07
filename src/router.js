@@ -8,8 +8,8 @@ import News from '@/views/News.vue'
 import Explore from '@/views/Explore.vue'
 
 // Popups
-import Brocas from '@/views/popups/Brocas.vue'
-import MotorCortex from '@/views/popups/MotorCortex.vue'
+import Brocas from '@/views/regions/Brocas.vue'
+import MotorCortex from '@/views/regions/MotorCortex.vue'
 
 Vue.use(Router)
 
@@ -21,7 +21,7 @@ export default new Router({
     { path: '/news', name: 'News', component: News, meta: { side: 'full' } },
     { path: '/explore', name: 'Explore', component: Explore, meta: { side: 'full' } },
 
-    { path: '/show/brocas', name: 'Brocas', component: Brocas, meta: { side: 'right' } },
-    { path: '/show/motor-cortex', name: 'MotorCortex', component: MotorCortex, meta: { side: 'left' } },
+    { path: '/regions/brocas', name: 'Brocas', component: Brocas, meta: { side: 'right' } },
+    { path: '/regions/motor-cortex', name: 'MotorCortex', component: MotorCortex, meta: { side: 'left' } },
   ]
 })

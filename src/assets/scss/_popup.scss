@@ -3,6 +3,10 @@
   z-index: 25;
   width: 50%;
   height: 100%;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  box-sizing: border-box;
+
   position: absolute;
   display: flex;
   align-items: center;
@@ -30,16 +34,18 @@
   // Home page adjustments
   &.home {
     width: 55%;
-    box-sizing: border-box;
-    padding-bottom: 5rem;
+    padding-top: 0;
   }
 
   // Content wrapper
   .wrapper {
+    max-height: 100%;
     position: relative;
+    // overflow: hidden;
     width: 100%;
 
     &.dark {
+      overflow-y: auto;
       background: map-get($colors, dark);
       color: map-get($colors, light);
     }
@@ -60,6 +66,28 @@
 
       .content {
         padding: 4rem;
+
+        img {
+          &.medium {
+            height: auto;
+            width: 50%;
+          }
+        }
+
+        .description {
+          font-size: 1.7rem;
+          margin-top: 3rem;
+          margin-bottom: 7rem;
+        }
+
+        .section {
+          margin-bottom: 5rem;
+          margin-top: 5rem;
+          width: 100%;
+          display: flex;
+          align-items: start;
+          justify-content: space-between;
+        }
       }
     }
   }
