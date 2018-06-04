@@ -24,6 +24,12 @@
   .info {
     text-align: justify;
 
+    &.lg-img {
+      .img {
+        width: 30%;
+      }
+    }
+
     .img {
       width: 20%;
       position: relative;
