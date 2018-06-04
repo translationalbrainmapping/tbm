@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="footer" class="bar">
     <ul class="navbar">
-      <router-link v-for="link in links" :key="link" :to="{ name: link }"><li>{{ link }}</li></router-link>
+      <router-link v-for="link in links" :key="link.link" :to="{ name: link.link }"><li>{{ link.name }}</li></router-link>
     </ul>
     <div class="copy">&copy; 2018 CAOS LAB</div>
   </div>
@@ -12,7 +12,12 @@ export default {
   name: 'Footer',
   data() {
     return {
-      links: [ 'Home', 'Team', 'News' ]
+      links: [
+        { name: 'Home', link: 'Home'},
+        { name: 'Team', link: 'Team'},
+        { name: 'News', link: 'News'},
+        { name: 'Patient Resources', link: 'PatientResources'}
+      ]
     }
   }
 }

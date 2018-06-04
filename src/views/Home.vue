@@ -10,8 +10,8 @@
 
             <!-- Main CTAs -->
             <div class="buttons">
-              <router-link v-for="link in links" :key="link" :to="{ name: link }" class="btn btn-dark">
-                {{ link }}
+              <router-link v-for="link in links" :key="link.link" :to="{ name: link.link }" class="btn btn-dark">
+                {{ link.name }}
                 <div class="triangle small white tl"></div>
                 <div class="triangle small white br"></div>
               </router-link>
@@ -45,7 +45,11 @@ export default {
   data() {
     return {
       arrow: faAngleRight,
-      links: [ 'Team', 'News' ]
+      links: [
+        { name: 'Team', link: 'Team'},
+        { name: 'News', link: 'News'},
+        { name: 'For Patients', link: 'PatientResources'}
+      ]
     }
   }
 }

@@ -5,6 +5,7 @@
     <div :class="[ 'bracket', 'tr', on ]"></div>
     <div :class="[ 'bracket', 'bl', on ]"></div>
     <div :class="[ 'bracket', 'br', on ]"></div>
+    <span v-if="verbose" class="verbose">Back to Home</span>
   </router-link>
 </template>
 
@@ -38,6 +39,10 @@
       on: {
         type: String,
         required: true
+      },
+      verbose: {
+        type: Boolean,
+        required: false
       }
     }
   }

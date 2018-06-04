@@ -14,6 +14,8 @@ let world = (function () {
       camera,
       renderer,
       controls,
+      light,
+      lightControls,
       raycaster,
       mouse,
       loader,
@@ -44,6 +46,17 @@ let world = (function () {
     renderer = new THREE.WebGLRenderer()
     renderer.setPixelRatio(window.devicePixelRatio)
     renderer.setSize(container.clientWidth, container.clientHeight)
+
+    // create lighting
+    light = new THREE.DirectionalLight(0xffbbbb, .45)
+    light.position.set(0, 4, -10)
+    lightControls = new OrbitControls(light, renderer.domElement, document)
+    lightControls.addEventListener('change', self.render) // call this only in static scenes (i.e., if there is no animation loop)
+    lightControls.enablePan = false
+    lightControls.enableKeys = false
+    lightControls.enableZoom = false
+    lightControls.minDistance = 10
+    lightControls.maxDistance = 100
 
     // Init Orbit Controls
     controls = new OrbitControls(camera, renderer.domElement, document)
@@ -86,7 +99,7 @@ let world = (function () {
     }
 
     // Setup lighting
-    scene.add(new THREE.DirectionalLight(0xffcccc, .5))
+    scene.add(light)
     scene.add(new THREE.AmbientLight(0xffcccc, .4))
   }
 

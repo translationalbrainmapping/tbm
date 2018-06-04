@@ -34,6 +34,13 @@ $btn-colors: 'primary' 'dark';
   align-items: center;
   justify-content: center;
 
+  & .verbose {
+    white-space: nowrap;
+    position: absolute;
+    left: 120%;
+    color: map-get($colors, primary);
+  }
+
   &.white {
     background-color: white;
     color: map-get($colors, primary) !important;

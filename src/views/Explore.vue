@@ -1,6 +1,6 @@
 <template>
   <transition name="fade-right" enter-active-class="animated fadeInLeft" leave-active-class="animated fadeOutLeft">
-    <CloseButton side="left" closeto="Home" color="primary" on="bg" />
+    <CloseButton side="left" closeto="Home" color="primary" on="bg" verbose="true" />
   </transition>
 </template>
 
