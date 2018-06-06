@@ -16,15 +16,19 @@
             </a>
             <p class="name blk"><a href="https://www.urmc.rochester.edu/neurosurgery/news.aspx?start=01-01-2017&amp;end=12-31-2017#newsItem2196" target="_blank" rel="noopener">Music Teacher Played His Saxophone While In Brain Surgery</a></p>
             <p class="title blk">When music teacher Dan Fabbio played a simple melody on his saxophone as he laid on the operating table after his brain tumor had been removed, music never sounded so sweet.</p>
-            <ul class="description">
-              <li><a href="https://www.npr.org/sections/health-shots/2017/08/25/545710598/this-music-teacher-played-his-saxophone-while-in-brain-surgery" target="_blank" rel="noopener">NPR Health News</a></li>
-              <li><a href="https://people.com/bodies/music-teacher-plays-saxophone-during-brain-surgery/" target="_blank" rel="noopener">People Magazine</a></li>
-              <li><a href="https://www.nbcnews.com/health/health-news/musician-plays-sax-during-brain-tumor-surgery-n796971" target="_blank" rel="noopener">NBC News Health</a></li>
-              <li><a href="https://www.urmc.rochester.edu/neurosurgery/news.aspx?start=01-01-2017&amp;end=12-31-2017#newsItem2196" target="_blank" rel="noopener">University of Rochester Neurosurgery</a></li>
-              <li><a href="https://www.democratandchronicle.com/story/news/2017/09/02/saxophone-solo-after-brain-surgery-signal-success-rochester/626876001/" target="_blank" rel="noopener">Democrat and Chronicle</a></li>
-              <li><a href="https://newatlas.com/patient-plays-saxophone-brain-surgery/51094/" target="_blank" rel="noopener">New Atlas</a></li>
-              <li><a href="https://www.facebook.com/SeekerMedia/videos/10155327361953387/" target="_blank" rel="noopener">Seeker Media</a></li>
-            </ul>
+            <div style="display: flex">
+              <ul class="description" style="display: inline-block">
+                <li><a href="https://www.npr.org/sections/health-shots/2017/08/25/545710598/this-music-teacher-played-his-saxophone-while-in-brain-surgery" target="_blank" rel="noopener">NPR Health News</a></li>
+                <li><a href="https://people.com/bodies/music-teacher-plays-saxophone-during-brain-surgery/" target="_blank" rel="noopener">People Magazine</a></li>
+                <li><a href="https://www.nbcnews.com/health/health-news/musician-plays-sax-during-brain-tumor-surgery-n796971" target="_blank" rel="noopener">NBC News Health</a></li>
+                <li><a href="https://www.urmc.rochester.edu/neurosurgery/news.aspx?start=01-01-2017&amp;end=12-31-2017#newsItem2196" target="_blank" rel="noopener">University of Rochester Neurosurgery</a></li>
+              </ul>
+              <ul class="description" style="display: inline-block">
+                <li><a href="https://www.democratandchronicle.com/story/news/2017/09/02/saxophone-solo-after-brain-surgery-signal-success-rochester/626876001/" target="_blank" rel="noopener">Democrat and Chronicle</a></li>
+                <li><a href="https://newatlas.com/patient-plays-saxophone-brain-surgery/51094/" target="_blank" rel="noopener">New Atlas</a></li>
+                <li><a href="https://www.facebook.com/SeekerMedia/videos/10155327361953387/" target="_blank" rel="noopener">Seeker Media</a></li>
+              </ul>
+            </div>
           </div>
         </div>
 
