@@ -5,7 +5,7 @@ import Targets from '@/assets/js/targets'
 let world = (function () {
   let self = {} // export container
   // boolean to flag if should detect input
-  self.touching = false;
+  self.touching = false
 
   // Global variables
   let window,
@@ -153,7 +153,7 @@ let world = (function () {
 
     // Make old targets almost invisible
     if (oldTargets.length > 0) {
-      oldTargets.pop().object.material.opacity = 0.1
+      oldTargets.pop().object.material.opacity = 0.05
       targetbox.style.display = 'none'
     }
 
